@@ -17,4 +17,4 @@ go env
 
 echo "Running build script..."
 cd src/$package
-bash -c "build.sh"
+bash -c "./build.sh"
