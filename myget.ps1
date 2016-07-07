@@ -10,6 +10,10 @@ mkdir -f src/$package > $null
 ls -exclude @("src","myget.ps1") | %{mv $_.fullname src\$package}
 ls src\$package
 
+echo "Go information:"
+(Get-Command go).definition
 go version
+go env
+
 echo "Running build script..."
 bash -c "src/$package/build.sh"
