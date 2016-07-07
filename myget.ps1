@@ -1,10 +1,13 @@
-$package = "github.com\carolynvs\magic"
+$package = "github.com/carolynvs/magic"
 
-# Move our repo into the GOPATH
-echo "Setting up GOPATH"
-$env:GOPATH="$PSScriptRoot-gopath"
-$GOBIN="$env:GOPATH\bin"
-if(!$env:PATH.Contains($GOBIN)) { $env:PATH+=";$GOBIN" }
-Copy-Item -Force -Recurse $PSScriptRoot "$env:GOPATH\src\$package"
+echo "Configuring the GOPATH and GOBIN..."
+$env:GOPATH = "$PSScriptRoot"
+$gobin = "$env:GOPATH\bin"
+if(!$env:PATH.Contains($gobin)) { $env:PATH+=";$gobin" }
 
-bash -c "./build.sh"
+echo "Moving source code into the GOPATH..."
+mkdir -f src/$package > $null
+ls -exclude @("src","myget.ps1") | %{mv $_.fullname src\$package}
+
+echo "Running build script..."
+bash -c "src/$package/build.sh"
