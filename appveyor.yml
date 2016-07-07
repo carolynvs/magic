@@ -1,0 +1,15 @@
+version: 1.0.{build}
+clone_folder: C:\Go\src\github.com\carolynvs\magic
+environment:
+  GOPATH: C:\Go
+  CHOCO_APIKEY:
+    secure: 1+9/0TqWnW0Sfg7PtlE1USgm+ctx132qxDX73PcYFJV/hfNUhPcaZqyX3EcUkKvG
+build_script:
+- ps: >-
+    $ErrorActionPreference = "Stop"
+
+    $env:PATH+="$env:PATH;$GOPATH\bin"
+
+    bash -c "./build.sh"
+
+    installer\publish.ps1 -version $env:APPVEYOR_BUILD_VERSION -apikey $env:CHOCO_APIKEY
