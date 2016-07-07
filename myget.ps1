@@ -16,4 +16,5 @@ go version
 go env
 
 echo "Running build script..."
-bash -c "src/$package/build.sh"
+cd src/$package
+bash -c "build.sh"

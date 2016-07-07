@@ -6,7 +6,7 @@ PACKAGE="github.com/carolynvs/magic"
 # Get our magical dependencies
 echo "Installing glide..."
 go get github.com/Masterminds/glide
-$( cd "$( dirname "${BASH_SOURCE[0]}" )" && glide install 2>&1)
+glide install 2>&1
 
 # Let's make some magic
 echo "Building all targets with $(go version)"
