@@ -10,3 +10,20 @@ build_script:
     $env:PATH+="$env:PATH;$GOPATH\bin"
 
     bash -c "./build.sh"
+
+    installer\package.ps1 -version $env:APPVEYOR_BUILD_VERSION
+
+nuget:
+  disable_publish_on_pr: true
+
+artifacts:
+- path: '**\*.nupkg'
+
+deploy:
+- provider: NuGet
+  server: https://ci.appveyor.com/nuget/carolynvs
+  api_key:
+    secure: X8dN8VATxHQAHxbwawEpCov4SaerAp45Uqc8dDlM9b4=
+  skip_symbols: true
+  on:
+    branch: master

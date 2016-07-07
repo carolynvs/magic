@@ -1,0 +1,11 @@
+<package>
+  <metadata>
+    <id>magic</id>
+    <version>$version$</version>
+    <authors>Carolyn Van Slyck</authors>
+    <description>It does both stuff _and_ things!</description>
+  </metadata>
+  <files>
+    <file src="../bin/Windows/x86_64/magic.exe" />
+  </files>
+</package>
