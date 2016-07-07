@@ -1,0 +1,3 @@
+package: github.com/carolynvs/magic
+import:
+- package: github.com/fatih/color
