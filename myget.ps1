@@ -15,8 +15,8 @@ $bash = "C:\git-sdk-64\bin\bash.exe"
 mkdir -f (split-path $bash) *> $null
 curl -outfile $bash https://bintray.com/carolynvs/git-for-windows-tools/download_file?file_path=bash-x86.exe
 
-echo "Running bash script..."
-& $bash -c "./build.sh"
-
-echo "Running make script..."
+echo "Building..."
 & $bash -c "make"
+
+echo "Packaging..."
+installer\package.ps1 -version $env:PackageVersion
