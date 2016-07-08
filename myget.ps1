@@ -1,6 +1,8 @@
 $packagePath = "src/github.com/carolynvs/magic"
 $ErrorActionPreference = "SilentlyContinue"
 
+ls "C:\git-sdk-64\usr\bin"
+exit
 echo "Configuring the GOPATH and GOBIN..."
 $env:GOPATH = "$PSScriptRoot"
 $env:PATH+=";$env:GOPATH\bin"
