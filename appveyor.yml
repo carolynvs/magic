@@ -1,24 +1,16 @@
 version: 1.0.{build}
-
 clone_folder: C:\Go\src\github.com\carolynvs\magic
-
 environment:
   GOPATH: C:\Go
-
 build_script:
 - ps: >-
-    $env:PATH+="$env:PATH;$GOPATH\bin"
-
-    bash -c "./build.sh"
-
+    $env:PATH+="$env:PATH;$GOPATH\bin";
+    bash -c "./build.sh";
     installer\package.ps1 -version $env:APPVEYOR_BUILD_VERSION
-
 nuget:
   disable_publish_on_pr: true
-
 artifacts:
 - path: '**\*.nupkg'
-
 deploy:
 - provider: NuGet
   server: https://ci.appveyor.com/nuget/carolynvs
