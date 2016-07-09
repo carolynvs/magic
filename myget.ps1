@@ -9,8 +9,9 @@ ls -exclude @("src","myget.ps1") | %{mv $_.fullname $packagePath}
 cd $packagePath
 
 # Grab the magical bash wrapper and put in a happy place
-$bash = "c:\git-sdk-64\bin\bash.exe"
-mv C:\git-sdk-64\mingw64\share\git\compat-bash.exe $bash
+$bash = "C:\git-sdk-64\bin\bash.exe"
+mkdir -f (split-path $bash) *> $null
+cp C:\git-sdk-64\mingw64\share\git\compat-bash.exe $bash
 
 echo "Building..."
 & $bash -c "make"
