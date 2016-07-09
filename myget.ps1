@@ -1,5 +1,5 @@
 $packagePath = "src/github.com/carolynvs/magic"
-$ErrorActionPreference = "SilentlyContinue"
+$ErrorActionPreference = "Stop"
 
 echo "Moving source code into the GOPATH..."
 $env:GOPATH = "$PSScriptRoot"
@@ -15,5 +15,5 @@ mv C:\git-sdk-64\mingw64\share\git\compat-bash.exe $bash
 echo "Building..."
 & $bash -c "make"
 
-echo "Packaging..."
-installer\publish.ps1 -version $env:PackageVersion
+echo "Publishing..."
+installer\publish.ps1 -version $env:PackageVersion -apikey $env:CHOCO_APIKEY
