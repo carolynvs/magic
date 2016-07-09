@@ -6,4 +6,4 @@ param (
 )
 
 choco pack $PSScriptRoot\magic.nuspec -version $version
-choco push --source $source magic.$version.nupkg $apikey
+choco push magic.$version.nupkg --source $source --key $apikey

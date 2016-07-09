@@ -3,7 +3,7 @@ clone_folder: C:\Go\src\github.com\carolynvs\magic
 environment:
   GOPATH: C:\Go
   CHOCO_APIKEY:
-    secure: X8dN8VATxHQAHxbwawEpCov4SaerAp45Uqc8dDlM9b4=
+    secure: 1+9/0TqWnW0Sfg7PtlE1USgm+ctx132qxDX73PcYFJV/hfNUhPcaZqyX3EcUkKvG
 build_script:
 - ps: >-
     $ErrorActionPreference = "Stop"
