@@ -12,25 +12,29 @@ import (
 func main() {
 	magicString := getUserMagicString()
 	color.Set(color.FgGreen)
-	fmt.Print(magicString)
+	fmt.Println(magicString)
 	color.Unset()
 }
 
 func getUserMagicString() string {
 	scriptPath := getMagicFilePath()
-	if _, err := os.Stat(scriptPath); os.IsNotExist(err) {
-		return "🎵  Oh oh it's magic! 🎵\n"
+	if _, err := os.Stat(scriptPath); err == nil {
+		shellPath := getShell()
+		shellArgs := []string{scriptPath}
+		output, err := exec.Command(shellPath, shellArgs...).Output()
+		if err != nil {
+			fmt.Fprintln(os.Stderr, "There was an error retrieving the user's magic string: ", err)
+			os.Exit(1)
+		}
+		return string(output)
 	}
 
-	shellPath := getShell()
-	shellArgs := []string{scriptPath}
-	output, err := exec.Command(shellPath, shellArgs...).Output()
-	if err != nil {
-		fmt.Fprintln(os.Stderr, "There was an error retrieving the user's magic string: ", err)
-		os.Exit(1)
+	magicTxt := os.Getenv("MAGIC_TEXT")
+	if magicTxt == "" {
+		magicTxt = "🎵  Oh oh it's magic! 🎵"
 	}
 
-	return string(output)
+	return magicTxt
 }
 
 func getMagicFilePath() string {
