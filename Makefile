@@ -1,13 +1,11 @@
 PACKAGE=github.com/carolynvs/magic
 
-default: cross-build
+default: native
 
-get-deps:
-	@echo "Installing glide..."
-	go get github.com/Masterminds/glide
-	glide install
+native:
+	go build
 
-cross-build: clean get-deps linux darwin windows
+cross-build: clean linux darwin windows
 
 linux: $(GOFILES) get-deps
 	GOOS=linux GOARCH=amd64 go build -o bin/Linux/x86_64/magic $(PACKAGE)
@@ -18,7 +16,7 @@ darwin: $(GOFILES) get-deps
 windows: $(GOFILES) get-deps
 	GOOS=windows GOARCH=amd64 go build -o bin/Windows/x86_64/magic.exe $(PACKAGE)
 
-.PHONY: clean
-
 clean:
 	 -rm -fr bin/*
+
+.PHONY: clean linux darwin windows
